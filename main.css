@@ -92,3 +92,8 @@ footer {
     align-items: center;
     height: 120px;
 }
+
+.card {
+    width: 18rem;
+    height: 25rem;
+}

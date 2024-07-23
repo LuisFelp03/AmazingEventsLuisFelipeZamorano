@@ -198,6 +198,11 @@ const data = {
     ],
 };
 
+// Normalizar texto
+function normalizarTexto(texto) {
+    return texto.toLowerCase();
+}
+
 // Espera a que todo el contenido de la página se haya cargado antes de ejecutar el código
 document.addEventListener('DOMContentLoaded', () => {
     // Selecciona los elementos del DOM que vamos a usar
@@ -245,10 +250,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Filtrar por búsqueda
-        const searchTerm = searchInput.value.toLowerCase(); // Obtiene el término de búsqueda en minúsculas
+        const searchTerm = normalizarTexto(searchInput.value); // Obtiene el término de búsqueda normalizado
         if (searchTerm) {
             filteredEvents = filteredEvents.filter(event =>
-                event.name.toLowerCase().includes(searchTerm) // Mantiene solo los eventos que contienen el término de búsqueda
+                normalizarTexto(event.name).includes(searchTerm)
             );
         }
 
