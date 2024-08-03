@@ -215,6 +215,8 @@ function showFilteredEvents(events, searchTerm = '', selectedCategories = []) {
     let container = document.getElementById('cards');
     container.innerHTML = ''; // Limpiar contenido previo
 
+    let hasResults = false; // Flag para verificar si se encontraron resultados
+
     events.forEach(event => {
         let eventDate = new Date(event.date); // Fecha del evento
 
@@ -226,8 +228,17 @@ function showFilteredEvents(events, searchTerm = '', selectedCategories = []) {
         ) {
             let card = createEventCard(event);
             container.appendChild(card);
+            hasResults = true; // Se encontraron resultados
         }
     });
+
+    // Mostrar mensaje si no se encontraron resultados
+    if (!hasResults) {
+        let message = document.createElement('div');
+        message.className = 'alert alert-warning text-center'; // Clases de Bootstrap para alerta y centrado
+        message.innerText = 'No se encontró ningún resultado :(';
+        container.appendChild(message);
+    }
 }
 
 // Función para manejar la búsqueda y el filtrado por categoría

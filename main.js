@@ -209,30 +209,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.querySelector('.search-bar input'); // Campo de búsqueda
     const categoryCheckboxes = document.querySelectorAll('.categories input[type="checkbox"]'); // Checkboxes de categorías
     const searchButton = document.querySelector('.search-bar button'); // Botón de búsqueda
+    const container = document.getElementById('cards'); // Contenedor de tarjetas
+    const noResultsMessage = document.getElementById('no-results-message'); // Contenedor del mensaje de no resultados
 
     // Función para mostrar las tarjetas de eventos en la página
     function showCards(events) {
-        let container = document.getElementById('cards');
-        container.innerHTML = '';
+        container.innerHTML = ''; // Limpia el contenedor de tarjetas
 
-        events.forEach(event => {
-            let card = document.createElement('div');
-            card.className = 'col-lg-3 col-md-6 mb-4 d-flex align-items-stretch';
+        if (events.length === 0) {
+            noResultsMessage.style.display = 'block'; // Muestra el mensaje de no resultados
+        } else {
+            noResultsMessage.style.display = 'none'; // Oculta el mensaje de no resultados
+            events.forEach(event => {
+                let card = document.createElement('div');
+                card.className = 'col-lg-3 col-md-6 mb-4 d-flex align-items-stretch';
 
-            card.innerHTML = `
-                <div class="card text-center">
-                    <img src="${event.image}" class="card-img-top" alt="${event.name}">
-                    <div class="card-body">
-                        <h5 class="card-title">${event.name}</h5>
-                        <p class="card-text">${event.description}</p>
-                        <p class="card-text"><strong>Price:</strong> $${event.price}</p>
-                        <a href="event-details.html?id=${event._id}" class="btn btn-primary">DETAILS</a>
+                card.innerHTML = `
+                    <div class="card text-center">
+                        <img src="${event.image}" class="card-img-top" alt="${event.name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${event.name}</h5>
+                            <p class="card-text">${event.description}</p>
+                            <p class="card-text"><strong>Price:</strong> $${event.price}</p>
+                            <a href="event-details.html?id=${event._id}" class="btn btn-primary">DETAILS</a>
+                        </div>
                     </div>
-                </div>
-            `;
+                `;
 
-            container.appendChild(card);
-        });
+                container.appendChild(card);
+            });
+        }
     }
 
     // Función para filtrar los eventos basados en la búsqueda y categorías seleccionadas

@@ -97,3 +97,14 @@ footer {
     width: 18rem;
     height: 25rem;
 }
+
+#no-results-message {
+    text-align: center;
+    /* Centra el texto dentro del div */
+    margin: 20px 0;
+    /* Espaciado superior e inferior */
+    font-size: 18px;
+    /* Tamaño de fuente del mensaje */
+    color: #333;
+    /* Color del texto del mensaje */
+}

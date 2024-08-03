@@ -119,6 +119,15 @@ function displayEvents(events) {
     const cardsContainer = document.getElementById('cards');
     cardsContainer.innerHTML = '';
 
+    if (events.length === 0) {
+        // Mostrar mensaje cuando no se encuentran resultados
+        const noResultsMessage = document.createElement('p');
+        noResultsMessage.className = 'text-center';
+        noResultsMessage.textContent = 'No se encontró ningún resultado :(';
+        cardsContainer.appendChild(noResultsMessage);
+        return;
+    }
+
     events.forEach(event => {
         const card = document.createElement('div');
         card.className = 'col-lg-3 col-md-6 mb-4 d-flex align-items-stretch';
